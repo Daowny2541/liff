@@ -66,6 +66,16 @@
     }
 
     async function sendMsg() {
+      if(liff.getContext().type !== "none") {
+        await liff.sendMessages([
+          {
+            "type": "sticker",
+            "packageId": 11537,
+            "stickerId": 52002738
+          }
+        ])
+        alert("message sent")
+      }
     }
 
     function getContext() {
