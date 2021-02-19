@@ -63,7 +63,7 @@
     }
 
     async function getFriendship() {
-      const friend = await liff.isFriendship()
+      const friend = await liff.getFriendship()
       document.getElementById("friendship").append(friend.friendFlag)
       if(!friend.friendFlag) {
         if(confirm("คุณยังไม่ได้เป็นเพื่อนกับ Bot ตัวนี้เลย คุณต้องการจะเพิ่มเลยมั้ยค่ะ?")) {
