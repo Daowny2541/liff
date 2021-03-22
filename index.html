@@ -60,6 +60,10 @@
     }
 
     function openWindow() {
+      liff.openWindow({
+        url: "https://line.me",
+        externel: true
+      })
     }
 
     async function getFriendship() {
@@ -124,6 +128,7 @@
        getUserProfile()
        getContext()
        getFriendship()
+       openWindow()
       // createUniversalLink()
     }
     main()
