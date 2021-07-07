@@ -16,7 +16,7 @@
   <button id="btnMsg" onclick="sendMsg()">Send Message</button>
   <script src="https://static.line-scdn.net/liff/edge/versions/2.9.0/sdk.js"></script>
   <script>
-    async function sendMsg() {
+    function sendMsg() {
       if (liff.getContext().type !== "none") {
         await liff.sendMessages([
           {
@@ -40,21 +40,11 @@
     liff.init({ liffId: "1656180971-q1lPN8ro" }, () => {
       if (liff.isLoggedIn()) {
         runApp()
+        sendMsg()
       } else {
         liff.login();
       }
     }, err => console.error(err.code, error.message));
-
-    async function main() {
-      await liff.init({ liffId: "1656180971-q1lPN8ro" })
-      if (liff.isLoggedIn()) {
-        getUserProfile()
-      } else {
-        liff.login();
-      }
-    }
-    main()
-    
   </script>
 </body>
 </html>
