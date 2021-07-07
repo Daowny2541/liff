@@ -97,7 +97,7 @@
         await liff.sendMessages([
           {
             "type": "text",
-            "text": "ลงทะเบียน:107331"
+            "text": document.getElementById("decodedIDToken").append(liff.getDecodedIDToken().email)
           }
         ])
         alert("Message sent")
