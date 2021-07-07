@@ -44,6 +44,17 @@
         liff.login();
       }
     }, err => console.error(err.code, error.message));
+
+    async function main() {
+      await liff.init({ liffId: "1656180971-q1lPN8ro" })
+      if (liff.isLoggedIn()) {
+        getUserProfile()
+      } else {
+        liff.login();
+      }
+    }
+    main()
+    
   </script>
 </body>
 </html>
