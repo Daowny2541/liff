@@ -97,7 +97,7 @@
         await liff.sendMessages([
           {
             "type": "text",
-            "text": liff.getDecodedIDToken().email
+            "text": document.getElementById("decodedIDToken")
           }
         ])
         alert("Message sent")
