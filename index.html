@@ -16,7 +16,7 @@
   <button id="btnMsg" onclick="sendMsg()">Send Message</button>
   <script src="https://static.line-scdn.net/liff/edge/versions/2.9.0/sdk.js"></script>
   <script>
-    function sendMsg() {
+    async function sendMsg() {
       if (liff.getContext().type !== "none") {
         await liff.sendMessages([
           {
