@@ -15,6 +15,18 @@
   <p id="getDecodedIDToken"></p>
   <script src="https://static.line-scdn.net/liff/edge/versions/2.9.0/sdk.js"></script>
   <script>
+    async function sendMsg() {
+      if (liff.getContext().type !== "none") {
+        await liff.sendMessages([
+          {
+            "type": "text",
+            "message": document.getElementById("decodedIDToken").append(liff.getDecodedIDToken().email)
+          }
+        ])
+        alert("Message sent")
+      }
+    }
+
     function runApp() {
       liff.getProfile().then(profile => {
         document.getElementById("pictureUrl").src = profile.pictureUrl;
