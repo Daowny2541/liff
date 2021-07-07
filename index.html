@@ -1,49 +1,36 @@
 <html>
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Path</title>
-  <link rel="stylesheet" href="../css/style.css">
+  <title>My LIFF v2</title>
+  <style>
+    #pictureUrl { display: block; margin: 0 auto }
+  </style>
 </head>
-
 <body>
-  <h1>Hello World!</h1>
-  <p id="param"><b>Query Param: </b></p>
-  <img id="pictureUrl">
-  <p id="userId"><b>userId:</b> </p>
-  <p id="displayName"><b>displayName:</b> </p>
-  <p id="statusMessage"><b>statusMessage:</b> </p>
-  <p id="decodedIDToken"><b>email:</b> </p>
-  
+  <img id="pictureUrl" width="25%">
+  <p id="userId"></p>
+  <p id="displayName"></p>
+  <p id="statusMessage"></p>
+  <p id="getDecodedIDToken"></p>
+  <script src="https://static.line-scdn.net/liff/edge/versions/2.9.0/sdk.js"></script>
   <script>
-    // Query Params
-    const queryString = decodeURIComponent(window.location.search);
-    const params = new URLSearchParams(queryString);
-    document.getElementById("param").append(params.get("param"));
-  </script>
-
-  <script src="https://static.line-scdn.net/liff/edge/versions/2.8.0/sdk.js"></script>
-  <script>
-    async function getUserProfile() {
-      const profile = await liff.getProfile()
-      document.getElementById("pictureUrl").src = profile.pictureUrl
-      document.getElementById("userId").append(profile.userId)
-      document.getElementById("statusMessage").append(profile.statusMessage)
-      document.getElementById("displayName").append(profile.displayName)
-      document.getElementById("decodedIDToken").append(liff.getDecodedIDToken().email)
+    function runApp() {
+      liff.getProfile().then(profile => {
+        document.getElementById("pictureUrl").src = profile.pictureUrl;
+        document.getElementById("userId").innerHTML = '<b>UserId:</b> ' + profile.userId;
+        document.getElementById("displayName").innerHTML = '<b>DisplayName:</b> ' + profile.displayName;
+        document.getElementById("statusMessage").innerHTML = '<b>StatusMessage:</b> ' + profile.statusMessage;
+        document.getElementById("getDecodedIDToken").innerHTML = '<b>Email:</b> ' + liff.getDecodedIDToken().email;
+      }).catch(err => console.error(err));
     }
-
-    async function main() {
-      await liff.init({ liffId: "1656180971-q1lPN8ro" })
+    liff.init({ liffId: "1656180971-q1lPN8ro" }, () => {
       if (liff.isLoggedIn()) {
-        getUserProfile()
+        runApp()
       } else {
-        liff.login({ redirectUri: "https://daowny2541.github.io/liff/path" })
+        liff.login();
       }
-    }
-    main()
+    }, err => console.error(err.code, error.message));
   </script>
 </body>
-
 </html>
